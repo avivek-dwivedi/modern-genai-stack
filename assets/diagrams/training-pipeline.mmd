@@ -1,0 +1,18 @@
+graph TD
+    A[S3 Dataset] --> B[SageMaker Training Job]
+    B --> C[MLflow / W&B]
+    B --> D[Model Artifact in S3]
+    D --> E[Model Registry]
+    E --> F[Canary Deploy]
+    F --> G{Tests Pass?}
+    G -->|Yes| H[Full Deploy to EKS]
+    G -->|No| I[Rollback]
+    H --> J[KServe / vLLM Serving]
+    J --> K[CloudWatch Monitoring]
+    K --> L{Anomalies?}
+    L -->|Yes| I
+    L -->|No| M[Production Traffic]
+
+    style F fill:#fbb,stroke:#333
+    style I fill:#f99,stroke:#333
+    style M fill:#9f9,stroke:#333

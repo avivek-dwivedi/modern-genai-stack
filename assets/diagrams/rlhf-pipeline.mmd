@@ -1,0 +1,11 @@
+graph TD
+    A[Base LLM] --> B[SFT on Instructions]
+    B --> C[SFT on Reasoning Traces]
+    C --> D[Preference Optimization<br/>DPO / ORPO / SimPO]
+    D --> E[RL with Verifiable Rewards<br/>GRPO]
+    E --> F[Distillation]
+    F --> G[Smaller Reasoning Model]
+
+    style A fill:#bbf,stroke:#333
+    style G fill:#9f9,stroke:#333
+    style E fill:#fbb,stroke:#333

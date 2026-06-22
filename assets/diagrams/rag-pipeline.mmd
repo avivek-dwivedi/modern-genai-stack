@@ -1,0 +1,19 @@
+graph TD
+    A[User Query] --> B[Hybrid Search]
+    B --> B1[BM25 / Keyword]
+    B --> B2[Dense Vector Search]
+    B1 --> C[Score Fusion RRF]
+    B2 --> C
+    C --> D[Reranker]
+    D --> E[Top-K Chunks]
+    E --> F[Prompt Builder]
+    F --> G[LLM Generation]
+    G --> H[Answer + Citations]
+    H --> I[Faithfulness Eval]
+    I --> J{Grounded?}
+    J -->|Yes| K[Return]
+    J -->|No| L[Re-retrieve or Reject]
+
+    style A fill:#f9f,stroke:#333
+    style K fill:#9f9,stroke:#333
+    style L fill:#f99,stroke:#333

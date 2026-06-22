@@ -1,0 +1,13 @@
+graph TD
+    A[Input Tokens] --> B[Token Embedding]
+    B --> C[Positional Encoding<br/>RoPE / MRoPE]
+    C --> D[Attention Block<br/>GQA / MLA]
+    D --> E[FFN / MoE Block<br/>SwiGLU / DeepSeekMoE]
+    E --> F[Residual + Norm]
+    F --> G{More Layers?}
+    G -->|Yes| D
+    G -->|No| H[Output Logits]
+
+    style D fill:#bbf,stroke:#333
+    style E fill:#bfb,stroke:#333
+    style C fill:#fbb,stroke:#333

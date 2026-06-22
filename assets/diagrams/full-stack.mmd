@@ -1,0 +1,27 @@
+graph TD
+    A[User / App] --> B[API Gateway / ALB]
+    B --> C[Auth / IAM / Cognito]
+    C --> D[Orchestrator]
+    D --> D1[Prompt Registry]
+    D --> D2[RAG Retriever]
+    D --> D3[Memory Store]
+    D --> D4[Tool Calling]
+    D --> D5[Guardrails]
+    D --> D6[Model Router]
+    D6 --> E1[Bedrock]
+    D6 --> E2[vLLM / TGI]
+    D6 --> E3[KServe]
+    D6 --> E4[Fallback Model]
+    E1 --> F[Observability]
+    E2 --> F
+    E3 --> F
+    E4 --> F
+    F --> G[Feedback Collection]
+    G --> H[Offline Eval]
+    H --> I[Fine-Tuning]
+    I --> J[Model Registry]
+    J --> K[Canary Deploy]
+    K --> D6
+
+    style D fill:#fbb,stroke:#333
+    style F fill:#bfb,stroke:#333

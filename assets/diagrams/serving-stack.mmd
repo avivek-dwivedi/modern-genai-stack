@@ -1,0 +1,17 @@
+graph TD
+    A[Request] --> B[Tokenize]
+    B --> C[Forward Pass]
+    C --> D{Prefill or Decode?}
+    D -->|Prefill| E[Compute KV Cache<br/>Use FlashAttention-3]
+    D -->|Decode| F[Speculative Decode]
+    E --> G[PagedAttention<br/>KV Cache Manager]
+    F --> G
+    G --> H[Sample Token]
+    H --> I{Finished?}
+    I -->|No| D
+    I -->|Yes| J[Detokenize]
+    J --> K[Response]
+
+    style G fill:#fbb,stroke:#333
+    style F fill:#bfb,stroke:#333
+    style E fill:#bbf,stroke:#333

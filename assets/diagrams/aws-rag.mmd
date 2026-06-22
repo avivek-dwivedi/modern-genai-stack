@@ -1,0 +1,17 @@
+graph LR
+    A[S3 Documents] --> B[OCR / Parser]
+    B --> C[Chunking Job]
+    C --> D[Embedding Job]
+    D --> E[OpenSearch / Vector DB]
+    F[API Gateway] --> G[FastAPI]
+    G --> H[RAG Retriever]
+    E --> H
+    H --> I[Reranker]
+    I --> J[Bedrock / vLLM]
+    J --> K[Answer + Citations]
+    K --> L[CloudWatch]
+    G --> L
+
+    style E fill:#bbf,stroke:#333
+    style J fill:#fbb,stroke:#333
+    style L fill:#bfb,stroke:#333

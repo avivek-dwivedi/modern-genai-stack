@@ -1,0 +1,22 @@
+graph TD
+    A[User Request] --> B[Supervisor Agent]
+    B --> C{Which Worker?}
+    C -->|Research| D[Research Agent]
+    C -->|Code| E[Code Agent]
+    C -->|Critique| F[Critic Agent]
+    C -->|Safety| G[Safety Agent]
+    D --> H[Tool: Web Search]
+    E --> I[Tool: Code Executor]
+    F --> J[Tool: Eval Harness]
+    G --> K[Tool: Policy Check]
+    H --> L[State Update]
+    I --> L
+    J --> L
+    K --> L
+    L --> M{More Steps?}
+    M -->|Yes| B
+    M -->|No| N[Final Response]
+
+    style B fill:#fbb,stroke:#333
+    style N fill:#9f9,stroke:#333
+    style L fill:#bbf,stroke:#333

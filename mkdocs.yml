@@ -1,0 +1,81 @@
+site_name: GenAI Engineering Hub
+site_description: End-to-end technical reference for modern Generative AI Engineering — architecture, RAG, agents, fine-tuning, AWS, security.
+site_author: GenAI Engineering Hub Contributors
+
+repo_name: genai-engineering-hub
+repo_url: https://github.com/your-org/genai-engineering-hub
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [.]
+
+nav:
+  - Home: README.md
+  - Section 1 — LLM Architecture: 01-architecture/README.md
+  - Section 2 — Attention & Serving Kernels: 02-attention-serving/README.md
+  - Section 3 — VLM & Multimodal: 03-vlm-multimodal/README.md
+  - Section 4 — Coding Models: 04-coding-models/README.md
+  - Section 5 — Fine-Tuning & PEFT: 05-finetuning-peft/README.md
+  - Section 6 — Alignment & RLHF: 06-alignment-rlhf/README.md
+  - Section 7 — RAGOps: 07-ragops/README.md
+  - Section 8 — AgentOps: 08-agentops/README.md
+  - Section 9 — LLMOps & EvalOps: 09-llmops-evalops/README.md
+  - Section 10 — AWS Production: 10-aws-production/README.md
+  - Section 11 — Security & Guardrails: 11-security-guardrails/README.md
+  - Section 12 — End-to-End Blueprint: 12-e2e-blueprint/README.md
+  - Examples: ../examples/README.md
+  - References: ../references/README.md

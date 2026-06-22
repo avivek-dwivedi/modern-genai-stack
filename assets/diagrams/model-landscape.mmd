@@ -1,0 +1,26 @@
+graph TD
+    A[Closed-Source Models] --> A1[OpenAI GPT-5.x]
+    A --> A2[Claude 4 Opus/Sonnet]
+    A --> A3[Gemini 2.5/3]
+    A --> A4[Grok 4]
+
+    B[Open-Weight Models] --> B1[Qwen Family]
+    B --> B2[DeepSeek Family]
+    B --> B3[Kimi Family]
+    B --> B4[MiniMax Family]
+    B --> B5[Llama Family]
+    B --> B6[Gemma Family]
+    B --> B7[Jamba Family]
+    B --> B8[Nemotron Family]
+    B --> B9[RWKV Family]
+
+    A1 -.->|System Card Only<br/>Low Architecture Detail| C[Use For]
+    B1 -.->|Full Tech Report| D[Use For]
+
+    C --> C1[Behavior Tracking]
+    C --> C2[Safety Studies]
+    D --> D1[Architecture Learning]
+    D --> D2[Implementation]
+
+    style A fill:#fbb,stroke:#333
+    style B fill:#bfb,stroke:#333

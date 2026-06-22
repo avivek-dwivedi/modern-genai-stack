@@ -1,0 +1,71 @@
+"""
+examples/04_serving/kserve_manifest.yaml
+
+KServe InferenceService manifest for serving an LLM with vLLM backend.
+Maps to docs/10-aws-production/README.md "AWS Fine-Tuning Architecture".
+
+Deploy:
+    kubectl apply -f kserve_manifest.yaml
+"""
+
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: qwen-7b-llm
+  namespace: kserve-demo
+  annotations:
+    # Autoscaling
+    autoscaling.knative.dev/metric: "concurrency"
+    autoscaling.knative.dev/target: "10"
+    autoscaling.knative.dev/minScale: "1"
+    autoscaling.knative.dev/maxScale: "10"
+spec:
+  predictor:
+    model:
+      # vLLM runtime — handles PagedAttention, prefix caching, etc.
+      runtime: vllm
+      modelFormat:
+        name: vllm
+      protocolVersion: v2
+      resources:
+        requests:
+          cpu: "4"
+          memory: "16Gi"
+          nvidia.com/gpu: "1"
+        limits:
+          cpu: "8"
+          memory: "32Gi"
+          nvidia.com/gpu: "1"
+      env:
+        # Serving optimizations
+        - name: VLLM_USE_V1
+          value: "1"
+        - name: VLLM_ENABLE_PREFIX_CACHING
+          value: "1"
+        - name: VLLM_WORKER_MULTIPROC_METHOD
+          value: "spawn"
+      # Storage URI for the model (S3, GCS, or HF hub)
+      storageUri: "s3://my-models-bucket/qwen-7b-instruct"
+    # Optional: canary deploy with traffic split
+    canaryTrafficPercent: 10
+---
+# Optional: HPA for GPU-based autoscaling
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: qwen-7b-llm-hpa
+  namespace: kserve-demo
+spec:
+  scaleTargetRef:
+    apiVersion: serving.kserve.io/v1beta1
+    kind: InferenceService
+    name: qwen-7b-llm
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
