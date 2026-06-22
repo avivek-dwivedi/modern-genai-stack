@@ -1,137 +1,89 @@
-# GenAI Engineering Hub
+<div align="center">
 
-> **The complete, end-to-end technical reference for modern Generative AI Engineering.**
-> From LLM architecture internals to production RAG systems, agents, fine-tuning, RLHF, AWS deployment, and security.
+# Modern GenAI Stack
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/)
-[![Maintained](https://img.shields.io/badge/Maintained-2026-green)]()
+**The end-to-end engineering reference for production Generative AI systems.**
 
----
+From LLM architecture internals to RAG, agents, fine-tuning, RLHF, AWS, and security — in one place.
 
-## What This Hub Is
+[📓 Master Notebook](end_to_end_llm_vlm_rag_agentops_master_notebook.ipynb) · [📚 Docs](docs/) · [💻 Examples](examples/) · [📑 Papers](references/papers.md)
 
-This is a **single, comprehensive technical knowledge base** for engineers building production-grade Generative AI systems. It is structured as a **learning path** from first principles all the way to deployed, monitored, secure AI products on AWS.
-
-Unlike scattered blog posts or vendor docs, this hub is:
-
-- **Vendor-neutral** — covers open-weight AND closed-source systems
-- **Architecture-deep** — goes from attention internals → serving kernels → production ops
-- **Production-focused** — every section ends with how to ship it
-- **Code-backed** — every major section has runnable examples in `examples/`
+</div>
 
 ---
 
-## 📚 Learning Path (Read In Order)
+## Why This Repo Exists
 
-| # | Topic | What You Will Learn | Doc |
-|---:|---|---|---|
-| 1 | **LLM Architecture** | Transformer, RoPE, Attention variants, MoE, Beyond-Transformer | [01-architecture](docs/01-architecture/README.md) |
-| 2 | **Attention & Serving Kernels** | FlashAttention, PagedAttention, KV-cache, inference optimization | [02-attention-serving](docs/02-attention-serving/README.md) |
-| 3 | **VLM & Multimodal** | CLIP, BLIP-2, LLaVA, Qwen-VL, Q-Former, multimodal embeddings | [03-vlm-multimodal](docs/03-vlm-multimodal/README.md) |
-| 4 | **Coding Models** | Code Llama, DeepSeek Coder, Qwen Coder, agentic coding | [04-coding-models](docs/04-coding-models/README.md) |
-| 5 | **Fine-Tuning & PEFT** | LoRA, QLoRA, DoRA, full FT, capacity planning | [05-finetuning-peft](docs/05-finetuning-peft/README.md) |
-| 6 | **Alignment & RLHF** | PPO → DPO → ORPO → GRPO, reasoning models | [06-alignment-rlhf](docs/06-alignment-rlhf/README.md) |
-| 7 | **RAGOps** | Basic RAG → hybrid → reranker → multimodal RAG → GraphRAG | [07-ragops](docs/07-ragops/README.md) |
-| 8 | **AgentOps** | ReAct, planner-executor, LangGraph, memory, multi-agent | [08-agentops](docs/08-agentops/README.md) |
-| 9 | **LLMOps & EvalOps** | Prompt registry, evaluation, observability, version control | [09-llmops-evalops](docs/09-llmops-evalops/README.md) |
-| 10 | **AWS Production** | Bedrock, EKS+KServe, vLLM, SageMaker, Ray | [10-aws-production](docs/10-aws-production/README.md) |
-| 11 | **Security & Guardrails** | Prompt injection, RAG poisoning, memory safety, PII | [11-security-guardrails](docs/11-security-guardrails/README.md) |
-| 12 | **End-to-End Blueprint** | The complete production system map | [12-e2e-blueprint](docs/12-e2e-blueprint/README.md) |
+Building a production GenAI system means stitching together 12+ technical layers — model architecture, serving, retrieval, agents, fine-tuning, alignment, security, and AWS. **Most docs cover one layer. This repo covers all of them, in order, with runnable code.**
 
----
-
-## 🗂️ Repository Layout
-
-```text
-genai-engineering-hub/
-├── README.md                          # ← you are here
-├── LICENSE                            # Apache 2.0
-├── CONTRIBUTING.md                    # how to contribute
-├── CHANGELOG.md                       # release notes
-│
-├── docs/                              # structured knowledge base (12 sections)
-│   ├── 01-architecture/
-│   ├── 02-attention-serving/
-│   ├── 03-vlm-multimodal/
-│   ├── 04-coding-models/
-│   ├── 05-finetuning-peft/
-│   ├── 06-alignment-rlhf/
-│   ├── 07-ragops/
-│   ├── 08-agentops/
-│   ├── 09-llmops-evalops/
-│   ├── 10-aws-production/
-│   ├── 11-security-guardrails/
-│   └── 12-e2e-blueprint/
-│
-├── examples/                          # runnable Python code for each section
-│   ├── 01_rag/         # end-to-end RAG with hybrid + reranker
-│   ├── 02_agent/       # LangGraph multi-agent supervisor
-│   ├── 03_finetune/    # LoRA + DPO training scripts
-│   ├── 04_serving/     # vLLM + KServe deployment
-│   ├── 05_bedrock/     # AWS Bedrock SDK + AgentCore
-│   └── 06_eval/        # EvalOps harness with LLM-as-judge
-│
-├── assets/
-│   ├── diagrams/                      # ASCII + Mermaid source for all diagrams
-│   └── images/                        # rendered architecture images
-│
-├── references/                        # curated paper/resource index
-│   └── papers.md
-│
-└── end_to_end_llm_vlm_rag_agentops_master_notebook.ipynb
-                                      # ← the master learning notebook
-```
+| | |
+|---|---|
+| 🏗️ **Architecture-deep** | Attention internals, MoE routing, beyond-transformer (Mamba, RWKV, KDA) |
+| 🚀 **Serving-aware** | FlashAttention, PagedAttention, KV-cache quantization, speculative decoding |
+| 🤖 **Application-ready** | RAG, agents, memory, tools, evaluation — with runnable examples |
+| ☁️ **AWS-native** | Bedrock, AgentCore, EKS+KServe, SageMaker, Ray |
+| 🔒 **Security-first** | Prompt injection, RAG poisoning, memory safety, defense in depth |
 
 ---
 
 ## 🚀 Quick Start
 
-### 1. Clone and explore the docs
-
 ```bash
-git clone https://github.com/your-org/genai-engineering-hub.git
-cd genai-engineering-hub
-```
+git clone https://github.com/avivek-dwivedi/modern-genai-stack.git
+cd modern-genai-stack
 
-### 2. Open the master notebook
-
-The single Jupyter notebook in the root is the **canonical, end-to-end learning artifact**.
-It is structured so you can read it top-to-bottom, or use it as a reference notebook.
-
-```bash
+# Open the master notebook
 jupyter lab end_to_end_llm_vlm_rag_agentops_master_notebook.ipynb
-```
 
-### 3. Run an example
-
-```bash
+# Run an example
 cd examples/01_rag
-pip install -r requirements.txt
+pip install -r ../../requirements.txt
 python rag_basic.py
 ```
 
 ---
 
-## 🎯 Who This Hub Is For
+## 🗺️ The 12-Section Learning Path
 
-| Audience | What to Read |
-|---|---|
-| **AI Engineer starting out** | Sections 1 → 6 (architecture → alignment), then 7 → 12 |
-| **ML Engineer moving to LLMs** | Sections 1, 5, 6, 7, 9 |
-| **Backend Engineer building AI products** | Sections 7, 8, 9, 10, 11, 12 |
-| **Solutions Architect** | Sections 9, 10, 11, 12 + AWS section in `examples/05_bedrock/` |
-| **Tech Lead / Engineering Manager** | Section 12 (E2E blueprint) + decision trees throughout |
+| # | Section | What's inside |
+|---:|---|---|
+| **01** | [LLM Architecture](docs/01-architecture/README.md) | RoPE, GQA, MLA, MoE, Mamba, RWKV |
+| **02** | [Attention & Serving Kernels](docs/02-attention-serving/README.md) | FlashAttention, PagedAttention, KV-cache |
+| **03** | [VLM & Multimodal](docs/03-vlm-multimodal/README.md) | CLIP, BLIP-2, LLaVA, Qwen-VL, ColPali |
+| **04** | [Coding Models](docs/04-coding-models/README.md) | Code Llama, DeepSeek Coder, Qwen Coder, Kimi K2 |
+| **05** | [Fine-Tuning & PEFT](docs/05-finetuning-peft/README.md) | LoRA, QLoRA, DoRA, capacity planning |
+| **06** | [Alignment & RLHF](docs/06-alignment-rlhf/README.md) | PPO → DPO → ORPO → GRPO |
+| **07** | [RAGOps](docs/07-ragops/README.md) | Hybrid search, rerankers, multimodal RAG |
+| **08** | [AgentOps](docs/08-agentops/README.md) | ReAct, LangGraph, memory, tools |
+| **09** | [LLMOps & EvalOps](docs/09-llmops-evalops/README.md) | Prompt registry, evaluation, observability |
+| **10** | [AWS Production](docs/10-aws-production/README.md) | Bedrock, EKS+KServe, vLLM, SageMaker |
+| **11** | [Security & Guardrails](docs/11-security-guardrails/README.md) | Injection, poisoning, defense in depth |
+| **12** | [E2E Blueprint](docs/12-e2e-blueprint/README.md) | The complete production system map |
 
 ---
 
-## 🧭 Core Principle
+## 💻 Examples
+
+Runnable code for every major section.
+
+| | | |
+|---|---|---|
+| 🟦 [examples/01_rag/](examples/01_rag/) | Hybrid RAG + reranker + faithfulness check | [`rag_basic.py`](examples/01_rag/rag_basic.py) |
+| 🤖 [examples/02_agent/](examples/02_agent/) | Multi-agent supervisor with LangGraph | [`langgraph_supervisor.py`](examples/02_agent/langgraph_supervisor.py) |
+| 🎯 [examples/03_finetune/](examples/03_finetune/) | LoRA + QLoRA + DPO training | [`lora_sft.py`](examples/03_finetune/lora_sft.py) · [`dpo_example.py`](examples/03_finetune/dpo_example.py) |
+| ⚡ [examples/04_serving/](examples/04_serving/) | vLLM config + KServe manifest | [`vllm_config.py`](examples/04_serving/vllm_config.py) · [`kserve_manifest.yaml`](examples/04_serving/kserve_manifest.yaml) |
+| ☁️ [examples/05_bedrock/](examples/05_bedrock/) | AWS Bedrock + Knowledge Base RAG | [`bedrock_basic.py`](examples/05_bedrock/bedrock_basic.py) |
+| 📊 [examples/06_eval/](examples/06_eval/) | LLM-as-judge eval harness | [`llm_as_judge.py`](examples/06_eval/llm_as_judge.py) |
+
+---
+
+## 🧭 The Core Principle
 
 ```text
 Architecture tells which model to choose.
 Fine-tuning tells how to adapt it.
 RAG connects private/external knowledge.
-Agents connect tools, workflows and memory.
+Agents connect tools, workflows, and memory.
 Serving runs the system at scale.
 LLMOps evaluates, monitors, and rolls back.
 Security prevents leakage, poisoning, and abuse.
@@ -139,28 +91,30 @@ Security prevents leakage, poisoning, and abuse.
 
 ---
 
-## 📖 Notebook vs Docs vs Examples
+## 📊 What's Tracked
 
-| Artifact | When to use |
+| Category | Coverage |
 |---|---|
-| **`end_to_end_*_master_notebook.ipynb`** | Linear reading, study sessions, teaching material |
-| **`docs/*.md`** | Quick lookup, reference, linkable deep-dives |
-| **`examples/*/*.py`** | When you need runnable code you can copy/adapt |
-
-The three formats are **synchronized**. Each `docs/` section has a sibling in the notebook and a corresponding example in `examples/`.
+| LLM models | Qwen, DeepSeek, Kimi, MiniMax, Llama, Gemma, Jamba, RWKV, Nemotron, Titans |
+| Architecture methods | RoPE, GQA, MLA, MoE, KDA, Mamba, Mamba-2 — all main + watchlist |
+| Serving methods | FlashAttention 1–3, SageAttention 1–3, PagedAttention, vAttention, RadixAttention |
+| Fine-tuning | Full FT, LoRA, QLoRA, DoRA, AdaLoRA, IA3 |
+| Alignment | PPO, DPO, ORPO, SimPO, KTO, GRPO, RLAIF |
+| AWS services | Bedrock, Bedrock Agents, AgentCore, SageMaker, EKS+KServe, ECS, OpenSearch, Ray |
+| Diagrams | 10 Mermaid architecture diagrams |
+| Paper references | 90+ with canonical URLs |
 
 ---
 
-## 🤝 Contributing
+## 🛠️ Who This Is For
 
-We welcome additions in:
-
-- **New architecture methods** (with paper link + one-line teaching summary)
-- **Updated model reports** (Qwen, DeepSeek, Kimi, MiniMax, Llama, Gemma, Jamba, RWKV, etc.)
-- **Real-world RAG / agent / fine-tuning patterns**
-- **AWS architecture diagrams**
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the rules.
+| Audience | Where to start |
+|---|---|
+| 🧑‍💻 **AI Engineer starting out** | Read the notebook top-to-bottom |
+| 👩‍🔬 **ML Engineer moving to LLMs** | Sections 1, 5, 6, 7, 9 |
+| 🧱 **Backend Engineer building AI products** | Sections 7, 8, 9, 10, 11, 12 |
+| 🏗️ **Solutions Architect** | Sections 9, 10, 11, 12 + `examples/05_bedrock/` |
+| 📊 **Tech Lead / EM** | Section 12 (E2E blueprint) + decision trees throughout |
 
 ---
 
@@ -170,8 +124,14 @@ Apache 2.0 — see [LICENSE](LICENSE).
 
 ---
 
-## 📅 Maintenance
+## 🤝 Contributing
 
-- **Current version:** V1.4 Master
-- **Last updated:** 2026-06
-- **Refresh cadence:** quarterly review of new models / papers / frameworks
+See [CONTRIBUTING.md](CONTRIBUTING.md). New model reports, architecture methods, and production patterns are welcome — please follow the watchlist vs. main classification.
+
+---
+
+<div align="center">
+
+**⭐ Star this repo if it helps you build production GenAI systems.**
+
+</div>
