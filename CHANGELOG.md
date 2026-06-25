@@ -4,6 +4,56 @@ All notable changes to this hub are documented here. The format follows [Keep a 
 
 ---
 
+## [V1.5] — 2026-06-25
+
+### 🧭 Scope Refocus
+
+The hub now focuses **exclusively** on the **research and engineering layers** of modern Generative AI. Sections 7–12 (RAG, agents, AWS production, security, E2E blueprint) have been **moved to an external production repo**.
+
+Sections remaining in this hub (sections 1–6):
+
+1. LLM Architecture (PE, attention, MoE, beyond-Transformer, multimodal backbone)
+2. Attention & Serving Kernels (FlashAttention, SageAttention, PagedAttention, KV-cache quantization, VLM/inference kernels)
+3. VLM & Multimodal (CLIP, BLIP-2, LLaVA, Qwen-VL, ColPali, MRoPE / Interleaved-MRoPE / iRoPE / DeepStack)
+4. Coding Models
+5. Fine-Tuning & PEFT
+6. Alignment & RLHF
+
+### ✨ Added (2026 coverage update)
+
+- **New PE methods** with verified canonical sources: Periodic RoPE / P-RoPE ([arXiv:2605.27980](https://arxiv.org/abs/2605.27980)), LazyAttention ([arXiv:2606.04302](https://arxiv.org/abs/2606.04302)), iRoPE (Llama 4 blog), Interleaved-MRoPE + DeepStack (Qwen3-VL).
+- **New attention mechanisms**: DSA (DeepSeek-V3.2 sparse attention), Gated DeltaNet, FlashMLA (DeepSeek MLA decoding kernels).
+- **New FFN/MoE methods**: REAM ([arXiv:2604.04356](https://arxiv.org/abs/2604.04356)), SoftMoE ([arXiv:2308.00951](https://arxiv.org/abs/2308.00951)), Expert-Choice Routing ([arXiv:2202.09368](https://arxiv.org/abs/2202.09368)).
+- **New serving kernels**: TurboQuant ([arXiv:2504.19874](https://arxiv.org/abs/2504.19874)), SageAttention2++ (in-tree), FlashMLA + DSA.
+- **New VLM/multimodal attention**: DSA, DeepStack, Local-Global Vision Attention (Gemma 3), iRoPE (Llama 4), ModRWKV.
+- **New section**: `docs/02-attention-serving/README.md` now has a dedicated `2.4 VLM / Multimodal Inference` sub-section.
+
+### 🗑️ Removed (moved to external production repo)
+
+- `docs/07-ragops/` → external repo
+- `docs/08-agentops/` → external repo
+- `docs/09-llmops-evalops/` → external repo
+- `docs/10-aws-production/` → external repo
+- `docs/11-security-guardrails/` → external repo
+- `docs/12-e2e-blueprint/` → external repo
+- `examples/01_rag/`, `examples/02_agent/`, `examples/05_bedrock/`, `examples/06_eval/` → external repo
+- 42 cells from `end_to_end_llm_vlm_rag_agentops_master_notebook.ipynb`
+
+### 🔧 Fixed
+
+- **Broken placeholder links**: Replaced every `Watchlist` / `TBD` entry in `references/papers.md` and section READMEs with verified arXiv / GitHub sources.
+- **Stale "Notebook section" lines** in `docs/04-coding-models`, `docs/05-finetuning-peft`, `docs/06-alignment-rlhf`: now point to the correct single section (4, 5, 6 respectively).
+- **Duplicated table** in `docs/02-attention-serving` 2.5 Architecture Cheat Sheet (was rendered twice).
+- **`.github/README.md`**: clarified that GitHub renders this folder-level README, with pointer back to the hub's main `/README.md`.
+
+### 🧹 Cleaned
+
+- All `Watchlist` maturity labels → `emerging` (more accurate framing).
+- All `TBD` / "search official sources" entries → real verified links.
+- Removed `AWS / Bedrock` and `LangChain / LangGraph / LlamaIndex / Ray` from `references/papers.md` (production-stack references moved to external repo).
+
+---
+
 ## [V1.4] — 2026-06-22
 
 ### ✨ Added
