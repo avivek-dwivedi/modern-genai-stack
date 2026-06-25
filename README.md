@@ -2,9 +2,9 @@
 
 # Modern GenAI Stack
 
-**The end-to-end engineering reference for production Generative AI systems.**
+**The research and engineering reference for modern Generative AI systems.**
 
-From LLM architecture internals to attention/serving kernels, multimodal models, fine-tuning, and alignmente-tuning, and alignment — in one place.
+From LLM architecture internals to attention/serving kernels, multimodal models, fine-tuning, and alignment — in one place.
 
 [📓 Master Notebook](end_to_end_llm_vlm_rag_agentops_master_notebook.ipynb) · [📚 Docs](docs/) · [💻 Examples](examples/) · [📑 Papers](references/papers.md)
 
@@ -14,15 +14,16 @@ From LLM architecture internals to attention/serving kernels, multimodal models,
 
 ## Why This Repo Exists
 
-Building a production GenAI system means stitching together 12+ technical layers — model architecture, serving, retrieval, agents, fine-tuning, alignment, security, and AWS. **Most docs cover one layer. This repo covers all of them, in order, with runnable code.**
+Building modern LLMs, VLMs and reasoning systems requires understanding model internals, attention/serving kernels, multimodal extensions, fine-tuning, and alignment. **Most docs cover one layer. This hub covers the research and engineering layers, in order, with runnable code.**
 
-| | |
-|---|---|
+| | | |
+|---|---|---|
 | 🏗️ **Architecture-deep** | Attention internals, MoE routing, beyond-transformer (Mamba, RWKV, KDA) |
-| 🚀 **Serving-aware** | FlashAttention, PagedAttention, KV-cache quantization, speculative decoding |
-| 🤖 **Application-ready** | RAG, agents, memory, tools, evaluation — with runnable examples |
-| ☁️ **AWS-native** | Bedrock, AgentCore, EKS+KServe, SageMaker, Ray |
-| 🔒 **Security-first** | Prompt injection, RAG poisoning, memory safety, defense in depth |
+| 🚀 **Serving-aware** | FlashAttention, SageAttention, PagedAttention, KV-cache quantization, speculative decoding |
+| 🖼️ **Multimodal-ready** | CLIP, BLIP-2, LLaVA, Qwen-VL, ColPali, MRoPE / iRoPE / DeepStack |
+| 🎯 **Fine-tuning & alignment** | LoRA / QLoRA / DoRA, PPO → DPO → ORPO → GRPO |
+
+> Sections 7-12 (RAG, agents, AWS production, security, E2E blueprint) have been moved to an **external production repo**. This hub focuses on the research and engineering layers.
 
 ---
 
@@ -35,15 +36,15 @@ cd modern-genai-stack
 # Open the master notebook
 jupyter lab end_to_end_llm_vlm_rag_agentops_master_notebook.ipynb
 
-# Run an example
-cd examples/01_rag
+# Run a fine-tuning example
+cd examples/03_finetune
 pip install -r ../../requirements.txt
-python rag_basic.py
+python lora_sft.py
 ```
 
 ---
 
-## 🗺️ The 12-Section Learning Path
+## 🗺️ The 6-Section Learning Path
 
 | # | Section | What's inside |
 |---:|---|---|
@@ -53,25 +54,21 @@ python rag_basic.py
 | **04** | [Coding Models](docs/04-coding-models/README.md) | Code Llama, DeepSeek Coder, Qwen Coder, Kimi K2 |
 | **05** | [Fine-Tuning & PEFT](docs/05-finetuning-peft/README.md) | LoRA, QLoRA, DoRA, capacity planning |
 | **06** | [Alignment & RLHF](docs/06-alignment-rlhf/README.md) | PPO → DPO → ORPO → GRPO |
-| **07** | [RAGOps](docs/07-ragops/README.md) | *Moved to external repo — see [Examples README](examples/README.md)* |
-| **08** | [AgentOps](docs/08-agentops/README.md) | *Moved to external repo — see [Examples README](examples/README.md)* |
-| **09** | [LLMOps & EvalOps](docs/09-llmops-evalops/README.md) | *Moved to external repo — see [Examples README](examples/README.md)* |
-| **10** | [AWS Production](docs/10-aws-production/README.md) | *Moved to external repo — see [Examples README](examples/README.md)* |
-| **11** | [Security & Guardrails](docs/11-security-guardrails/README.md) | *Moved to external repo — see [Examples README](examples/README.md)* |
-| **12** | [E2E Blueprint](docs/12-e2e-blueprint/README.md) | *Moved to external repo — see [Examples README](examples/README.md)* |
+
+> Sections 7-12 (RAG / Agents / LLMOps / AWS / Security / E2E Blueprint) are now in an external production repo.
 
 ---
 
 ## 💻 Examples
 
-Runnable code for every major section.
+Runnable code for the active sections.
 
-| | | |
-|---|---|---|
+| | | | |
+|---|---|---|---|
 | 🎯 [examples/03_finetune/](examples/03_finetune/) | LoRA + QLoRA + DPO training | [`lora_sft.py`](examples/03_finetune/lora_sft.py) · [`dpo_example.py`](examples/03_finetune/dpo_example.py) |
-| ⚡ [examples/04_serving/](examples/04_serving/) | vLLM config (AWS KServe examples moved to external repo) | [`vllm_config.py`](examples/04_serving/vllm_config.py) |
+| ⚡ [examples/04_serving/](examples/04_serving/) | vLLM config + serving patterns | [`vllm_config.py`](examples/04_serving/vllm_config.py) |
 
-> Note: RAG / Agent / AWS / Eval examples (sections 7-12) were moved to an external production repo. This hub now focuses on the **core research / engineering layers** (architecture → serving → finetuning → alignment).
+> RAG / Agent / AWS / Eval examples were moved to the external production repo.
 
 ---
 
@@ -92,12 +89,13 @@ Alignment shapes its behavior with PPO / DPO / GRPO.
 | Category | Coverage |
 |---|---|
 | LLM models | Qwen, DeepSeek, Kimi, MiniMax, Llama, Gemma, Jamba, RWKV, Nemotron, Titans |
-| Architecture methods | RoPE, GQA, MLA, MoE, KDA, Mamba, Mamba-2 — all main + watchlist |
-| Serving methods | FlashAttention 1–3, SageAttention 1–3, PagedAttention, vAttention, RadixAttention |
+| Architecture methods | RoPE (incl. iRoPE / P-RoPE / Interleaved-MRoPE), GQA, MLA, MoE, KDA, Gated DeltaNet, Mamba, Mamba-2 |
+| Attention mechanisms | Mamba, RWKV, RetNet, KDA, Gated DeltaNet, NSA, MLA, DSA, Lightning Attention |
+| Serving kernels | FlashAttention 1-3, SageAttention 1-3 (+2++), PagedAttention, vAttention, RadixAttention, FlashMLA, FlashInfer, TurboQuant |
+| VLM serving | DSA (DeepSeek-V3.2), DeepStack, Local-Global Vision Attention, LazyAttention |
 | Fine-tuning | Full FT, LoRA, QLoRA, DoRA, AdaLoRA, IA3 |
 | Alignment | PPO, DPO, ORPO, SimPO, KTO, GRPO, RLAIF |
-| AWS services | *Moved to external repo* |
-| Diagrams | 10 Mermaid architecture diagrams |
+| Diagrams | Mermaid architecture diagrams |
 | Paper references | 90+ with canonical URLs |
 
 ---
@@ -106,10 +104,16 @@ Alignment shapes its behavior with PPO / DPO / GRPO.
 
 | Audience | Where to start |
 |---|---|
-| 🧑‍💻 **AI Engineer starting out** | Read the notebook top-to-bottom (sections 1–6) |
+| 🧑‍💻 **AI Engineer starting out** | Read the notebook top-to-bottom (sections 1-6) |
 | 👩‍🔬 **ML Engineer moving to LLMs** | Sections 1, 5, 6 |
 | 🧱 **Backend Engineer serving models** | Section 2 (attention/serving) + examples/04_serving |
 | 🏗️ **Solutions Architect picking models** | Section 1 (architecture) + Section 3 (VLM/multimodal) |
+
+---
+
+## 🤝 Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). New model reports, architecture methods, and attention/serving patterns are welcome — please follow the `emerging` vs. `main` classification.
 
 ---
 
@@ -119,14 +123,8 @@ Apache 2.0 — see [LICENSE](LICENSE).
 
 ---
 
-## 🤝 Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md). New model reports, architecture methods, and production patterns are welcome — please follow the watchlist vs. main classification.
-attention/serving patterns are welcome — please follow the emerging
----
-
 <div align="center">
 
-**⭐ Star this repo if it helps you build production GenAI systems.**
+**⭐ Star this repo if it helps you build modern Generative AI systems.**
 
 </div>

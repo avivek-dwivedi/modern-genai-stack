@@ -100,3 +100,6 @@ docker-compose.override.yml
 
 # Large reference papers
 references/papers/*.pdf
+# Changelog (kept locally, not tracked in git)
+CHANGELOG.md
+
