@@ -119,7 +119,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). New model reports, architecture methods,
 
 ## 📜 License
 
-Apache 2.0 — see [LICENSE](LICENSE).
+CC BY 4.0 — see [LICENSE](LICENSE). This hub is a curated aggregation of publicly available research papers and blog references; original sources remain the property of their authors.
 
 ---
 

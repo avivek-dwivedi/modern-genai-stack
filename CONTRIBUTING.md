@@ -104,4 +104,4 @@ Please open an issue with the section + the error. Even a one-line PR fixing a t
 
 ## 📜 License
 
-By contributing, you agree your contributions will be licensed under Apache 2.0.
+By contributing, you agree your contributions will be licensed under CC BY 4.0 (same as the parent repo).

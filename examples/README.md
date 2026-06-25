@@ -28,4 +28,4 @@ python lora_sft.py
 
 ## 📜 License
 
-Apache 2.0 — same as the parent repo.
+CC BY 4.0 — same as the parent repo. See [LICENSE](../LICENSE).
