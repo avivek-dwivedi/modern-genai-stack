@@ -180,6 +180,6 @@ TRL: https://github.com/huggingface/trl
 
 ## 📎 Related Resources
 
-- **Notebook section:** Master notebook `Section 11 / Section 12 / Section 13`
+- **Notebook section:** Master notebook `Section 6`
 - **Code example:** [examples/03_finetune/dpo_example.py](../examples/03_finetune/) (DPO training script)
 - **Diagrams:** [assets/diagrams/rlhf-pipeline.md](../../assets/diagrams/rlhf-pipeline.md)

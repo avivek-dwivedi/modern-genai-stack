@@ -131,6 +131,6 @@ The other 70% is:
 
 ## 📎 Related Resources
 
-- **Notebook section:** Master notebook `Section 6 / Section 7`
-- **Code example:** [examples/02_agent/](../examples/02_agent/) (coding agent with tool use)
+- **Notebook section:** Master notebook `Section 4`
+- **Code example:** [examples/04_serving/](../examples/04_serving/) (vLLM config) — for coding agent patterns see external repo
 - **Diagrams:** none — this section is more about data than architecture

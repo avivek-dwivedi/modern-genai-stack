@@ -22,7 +22,10 @@
 - **MHRoPE / MRoPE-I** — https://arxiv.org/abs/2510.23095
 - **HoPE (Hyperbolic)** — https://arxiv.org/abs/2509.05218
 - **HoPE (Hybrid VLM)** — https://arxiv.org/abs/2505.20444
-- **LazyAttention** — https://arxiv.org/abs/2606.04302
+- **iRoPE (Implicit RoPE)** — https://ai.meta.com/blog/llama-4-multimodal-intelligence/ (introduced in Llama 4)
+- **TMRoPE (Time-aligned RoPE)** — https://arxiv.org/abs/2503.20215 (Qwen2.5-Omni)
+- **Interleaved-MRoPE** — https://arxiv.org/abs/2511.21631 (Qwen3-VL DeepStack + MRoPE)
+- **LazyAttention** — https://arxiv.org/abs/2606.04302 (deferred PE for KV reuse in RAG)
 
 ### Attention Mechanisms
 - **MLA (DeepSeek-V3)** — https://arxiv.org/abs/2412.19437
@@ -30,6 +33,8 @@
 - **Lightning Attention** — https://arxiv.org/abs/2501.08313 (MiniMax-01)
 - **Lightning Attention (M1)** — https://arxiv.org/abs/2506.13585
 - **KDA (Kimi Delta Attention)** — https://arxiv.org/abs/2510.26692
+- **Gated DeltaNet** — https://arxiv.org/abs/2412.06410 (linear attention, Qwen3-Next / Kimi Linear)
+- **DeepSeek Sparse Attention (DSA)** — https://github.com/deepseek-ai/DeepSeek-V3.2-Exp (DeepSeek-V3.2)
 
 ### FFN / MoE
 - **GLU Family / SwiGLU** — https://arxiv.org/abs/2002.05202
@@ -41,6 +46,8 @@
 - **SeqTopK** — https://arxiv.org/abs/2511.06494
 - **Sub-MoE / Expert Merging** — https://arxiv.org/abs/2506.23266
 - **REAM** — https://arxiv.org/abs/2604.04356
+- **SoftMoE (Soft Mixture-of-Experts)** — https://arxiv.org/abs/2308.00951
+- **Expert-Choice Routing** — https://arxiv.org/abs/2202.09368
 
 ### Beyond Transformer
 - **Mamba** — https://arxiv.org/abs/2312.00752
@@ -62,14 +69,17 @@
 - **Qwen2.5-VL** — https://arxiv.org/abs/2502.13923
 - **Qwen2.5-Omni** — https://arxiv.org/abs/2503.20215
 - **Qwen3-VL** — https://arxiv.org/abs/2511.21631
+- **Qwen3-Next (Gated DeltaNet)** — https://arxiv.org/abs/2505.09388 (Qwen3 family)
 - **DeepSeek-V3** — https://arxiv.org/abs/2412.19437
 - **DeepSeek-R1** — https://arxiv.org/abs/2501.12948
+- **DeepSeek-V3.2-Exp (DSA)** — https://github.com/deepseek-ai/DeepSeek-V3.2-Exp
 - **Kimi Linear** — https://arxiv.org/abs/2510.26692
 - **MiniMax-01** — https://arxiv.org/abs/2501.08313
 - **MiniMax-M1** — https://arxiv.org/abs/2506.13585
 - **Gemma 3** — https://arxiv.org/abs/2503.19786
-- **Llama 4 blog** — https://ai.meta.com/blog/llama-4-multimodal-intelligence/
+- **Llama 4 (iRoPE)** — https://ai.meta.com/blog/llama-4-multimodal-intelligence/
 - **Jamba** — https://arxiv.org/abs/2403.19887
+- **Nemotron-H** — https://arxiv.org/abs/2504.03624
 
 ---
 
@@ -80,6 +90,7 @@
 - **FlashAttention-3** — https://arxiv.org/abs/2407.08608
 - **SageAttention** — https://arxiv.org/abs/2410.02367
 - **SageAttention2** — https://arxiv.org/abs/2411.10958
+- **SageAttention2++** — https://github.com/thu-ml/SageAttention (in-tree extension of SageAttention2)
 - **SageAttention3** — https://arxiv.org/abs/2505.11594
 - **FlashInfer** — https://arxiv.org/abs/2501.01005
 - **FlexAttention** — https://arxiv.org/abs/2412.05496
@@ -87,28 +98,47 @@
 - **PagedAttention** — https://arxiv.org/abs/2309.06180
 - **vAttention** — https://arxiv.org/abs/2405.04437
 - **RadixAttention** — https://arxiv.org/abs/2312.07104
+- **FlashMLA** — https://github.com/deepseek-ai/FlashMLA (DeepSeek MLA decoding kernels)
 - **KV Cache Quantization** — https://arxiv.org/abs/2401.18079
 - **KVTuner** — https://arxiv.org/abs/2502.04420
 - **KVLinC** — https://arxiv.org/abs/2510.05373
+- **TurboQuant** — https://arxiv.org/abs/2504.19874 (Google KV cache quantization)
 - **RingAttention** — https://arxiv.org/abs/2310.01889
 - **DeepSpeed-Ulysses** — https://arxiv.org/abs/2309.14509
 - **USP** — https://arxiv.org/abs/2405.07719
+- **LazyAttention (RAG kernel)** — https://arxiv.org/abs/2606.04302
 
 ---
 
 ## VLM / Multimodal (Section 3)
 
+### Foundations
 - **CLIP** — https://arxiv.org/abs/2103.00020
 - **BLIP-2** — https://arxiv.org/abs/2301.12597
 - **LLaVA project** — https://llava-vl.github.io/
 - **InternVL** — https://arxiv.org/abs/2312.14238
-- **Qwen2.5-VL** — https://arxiv.org/abs/2502.13923
-- **Qwen2.5-Omni** — https://arxiv.org/abs/2503.20215
-- **Qwen3-VL** — https://arxiv.org/abs/2511.21631
-- **Gemma 3** — https://arxiv.org/abs/2503.19786
-- **HF VLM Design Blog** — https://huggingface.co/blog/gigant/vlm-design
-- **ColPali** — https://arxiv.org/abs/2407.01449
 - **SigLIP** — https://arxiv.org/abs/2303.15343
+- **ColPali** — https://arxiv.org/abs/2407.01449
+- **HF VLM Design Blog** — https://huggingface.co/blog/gigant/vlm-design
+
+### Frontier VLMs (2025–2026)
+- **Qwen2.5-VL** — https://arxiv.org/abs/2502.13923 (MRoPE)
+- **Qwen2.5-Omni** — https://arxiv.org/abs/2503.20215 (TMRoPE for time alignment)
+- **Qwen3-VL** — https://arxiv.org/abs/2511.21631 (Interleaved-MRoPE + DeepStack)
+- **Gemma 3** — https://arxiv.org/abs/2503.19786 (local-global attention for vision)
+- **Llama 4 (multimodal + iRoPE)** — https://ai.meta.com/blog/llama-4-multimodal-intelligence/
+- **MiniMax-01 / MiniMax-M1 (VLM lightning attention)** — https://arxiv.org/abs/2501.08313 / https://arxiv.org/abs/2506.13585
+
+### VLM Inference & Attention
+- **LazyAttention (RAG with deferred PE)** — https://arxiv.org/abs/2606.04302 (serves multimodal long-context RAG)
+- **DeepSeek Sparse Attention (DSA)** — https://github.com/deepseek-ai/DeepSeek-V3.2-Exp (image-text token-level sparse)
+- **FlashMLA (multimodal serving)** — https://github.com/deepseek-ai/FlashMLA (powers DeepSeek-V3.2 multimodal serving)
+
+### Position Encoding for Multimodal (cross-ref Section 1)
+- **Interleaved-MRoPE** — https://arxiv.org/abs/2511.21631
+- **TMRoPE (text-time RoPE)** — https://arxiv.org/abs/2503.20215
+- **HoPE (Hybrid PE for VLM / long-video)** — https://arxiv.org/abs/2505.20444
+- **MHRoPE / MRoPE-I (multimodal RoPE variants)** — https://arxiv.org/abs/2510.23095
 
 ---
 
@@ -147,27 +177,15 @@
 
 ---
 
-## Frameworks
+## Frameworks (for research/training — production frameworks moved to external repo)
 
-- **LangChain** — https://python.langchain.com/
-- **LangGraph** — https://langchain-ai.github.io/langgraph/
-- **LlamaIndex** — https://www.llama-index.com/
 - **vLLM** — https://docs.vllm.ai/
 - **TGI** — https://huggingface.co/docs/text-generation-inference
-- **Ray** — https://www.ray.io/
 - **OpenRLHF** — https://github.com/OpenRLHF/OpenRLHF
 - **verl** — https://github.com/volcengine/verl
 - **NeMo** — https://www.nvidia.com/en-us/ai-data-science/generative-ai/nemo-framework/
 
----
-
-## AWS / Bedrock (Section 10)
-
-- **Bedrock docs** — https://docs.aws.amazon.com/bedrock/
-- **Bedrock Agents** — https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html
-- **AgentCore** — https://aws.amazon.com/bedrock/agentcore/
-- **KServe** — https://kserve.github.io/website/
-- **OpenSearch** — https://opensearch.org/
+> Note: LangChain, LangGraph, LlamaIndex, Ray, Bedrock, AgentCore, KServe, OpenSearch and similar application/production-stack references were moved to an external production repo (sections 7-12 of the docs).
 
 ---
 

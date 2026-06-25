@@ -42,11 +42,11 @@ Sinusoidal PE
 → TMRoPE
 → Interleaved-MRoPE
 → MHRoPE / MRoPE-I
+→ iRoPE (Llama 4 implicit RoPE)
 → NoPE
-→ iRoPE
 → P-RoPE / Periodic RoPE
-→ HoPE variants
-→ LazyAttention (PE + KV reuse bridge)
+→ HoPE variants (Hyperbolic / Hybrid VLM)
+→ LazyAttention (PE + KV reuse bridge for RAG)
 ```
 
 ### Cheat Sheet
@@ -57,18 +57,18 @@ Sinusoidal PE
 | RoPE | Modern decoder LLM default | main | LLaMA, Qwen, DeepSeek | [arXiv:2104.09864](https://arxiv.org/abs/2104.09864) |
 | YaRN | Efficient RoPE context extension | main | Long-context LLaMA / Qwen configs | [arXiv:2309.00071](https://arxiv.org/abs/2309.00071) |
 | LongRoPE | Non-uniform RoPE interpolation | main | Long-context research | [arXiv:2402.13753](https://arxiv.org/abs/2402.13753) |
-| LongRoPE2 | Continuation of LongRoPE context scaling | watchlist | Research | [arXiv:2502.20082](https://arxiv.org/abs/2502.20082) |
-| Periodic RoPE / P-RoPE | Infinite-context PE direction | watchlist | Research | [arXiv:2605.27980](https://arxiv.org/abs/2605.27980) |
+| LongRoPE2 | Continuation of LongRoPE context scaling | emerging | Research | [arXiv:2502.20082](https://arxiv.org/abs/2502.20082) |
+| Periodic RoPE / P-RoPE | Infinite-context PE direction | emerging | Research | [arXiv:2605.27980](https://arxiv.org/abs/2605.27980) |
 | MRoPE | Multimodal spatial/temporal PE | main | Qwen2.5-VL family | [arXiv:2502.13923](https://arxiv.org/abs/2502.13923) |
 | TMRoPE | Time-aligned multimodal RoPE | main | Qwen2.5-Omni | [arXiv:2503.20215](https://arxiv.org/abs/2503.20215) |
 | Interleaved-MRoPE | Interleaved text-image-video PE | main | Qwen3-VL | [arXiv:2511.21631](https://arxiv.org/abs/2511.21631) |
-| MHRoPE | Multi-head frequency allocation for multimodal | watchlist | Research | [arXiv:2510.23095](https://arxiv.org/abs/2510.23095) |
-| MRoPE-I / MRoPE-Interleave | Interleaved multimodal RoPE variant | watchlist | Research | [arXiv:2510.23095](https://arxiv.org/abs/2510.23095) |
-| NoPE | Transformers without explicit PE | watchlist | Research direction | [arXiv:2505.11199](https://arxiv.org/abs/2505.11199) |
-| iRoPE | Implicit RoPE direction | watchlist | Research | Llama 4 references |
-| HoPE (Hyperbolic RoPE) | Hyperbolic geometry PE direction | watchlist | Research | [arXiv:2509.05218](https://arxiv.org/abs/2509.05218) |
-| HoPE (Hybrid of Position Embedding) | VLM / long-video PE | watchlist | Research | [arXiv:2505.20444](https://arxiv.org/abs/2505.20444) |
-| LazyAttention | Deferred PE for position-agnostic KV reuse | watchlist | Research | [arXiv:2606.04302](https://arxiv.org/abs/2606.04302) |
+| MHRoPE | Multi-head frequency allocation for multimodal | emerging | Research | [arXiv:2510.23095](https://arxiv.org/abs/2510.23095) |
+| MRoPE-I / MRoPE-Interleave | Interleaved multimodal RoPE variant | emerging | Research | [arXiv:2510.23095](https://arxiv.org/abs/2510.23095) |
+| NoPE | Transformers without explicit PE | emerging | Research direction | [arXiv:2505.11199](https://arxiv.org/abs/2505.11199) |
+| iRoPE | Implicit RoPE for vision-language | emerging | Llama 4 | [Llama 4 blog](https://ai.meta.com/blog/llama-4-multimodal-intelligence/) |
+| HoPE (Hyperbolic RoPE) | Hyperbolic geometry PE direction | emerging | Research | [arXiv:2509.05218](https://arxiv.org/abs/2509.05218) |
+| HoPE (Hybrid of Position Embedding) | VLM / long-video PE | emerging | Research | [arXiv:2505.20444](https://arxiv.org/abs/2505.20444) |
+| LazyAttention | Deferred PE for position-agnostic KV reuse (RAG) | emerging | Research (ICML 2026) | [arXiv:2606.04302](https://arxiv.org/abs/2606.04302) |
 
 ### Core Takeaway
 
@@ -112,9 +112,13 @@ Self-Attention
 | MLA | Compresses KV cache into latent representation | main | DeepSeek-V3 / DeepSeek line | [arXiv:2412.19437](https://arxiv.org/abs/2412.19437) |
 | Sparse Attention | Skips irrelevant tokens/blocks | main | DeepSeek sparse direction | [arXiv:2412.19437](https://arxiv.org/abs/2412.19437) |
 | NSA | Sparse long-context attention w/ token compression + selection | main | Research | [arXiv:2502.11089](https://arxiv.org/abs/2502.11089) |
+| DSA (DeepSeek Sparse Attention) | Token-level sparse attention for prefill + decode | main | DeepSeek-V3.2-Exp | [DeepSeek-V3.2-Exp repo](https://github.com/deepseek-ai/DeepSeek-V3.2-Exp) |
 | Lightning Attention | Efficient long-context hybrid attention | main | MiniMax-01 / MiniMax-M1 | [arXiv:2501.08313](https://arxiv.org/abs/2501.08313), [arXiv:2506.13585](https://arxiv.org/abs/2506.13585) |
 | KDA / Kimi Delta Attention | Linear-attention fixed-state memory | main | Kimi Linear | [arXiv:2510.26692](https://arxiv.org/abs/2510.26692) |
+| Gated DeltaNet | Linear attention with data-controlled gating | main | Qwen3-Next / Kimi-style | [arXiv:2412.06410](https://arxiv.org/abs/2412.06410) |
 | Multimodal Self-Attention | Text/image/video tokens reason together | main | Qwen3-VL | [arXiv:2511.21631](https://arxiv.org/abs/2511.21631) |
+| Vision Local-Global Attention | Image patches split into local + global streams | main | Gemma 3 multimodal | [arXiv:2503.19786](https://arxiv.org/abs/2503.19786) |
+| DeepStack (multi-level ViT fusion) | Tighter vision-language alignment | main | Qwen3-VL | [arXiv:2511.21631](https://arxiv.org/abs/2511.21631) |
 
 ### Core Takeaway
 
@@ -146,8 +150,10 @@ Dense FFN
 → High-Sparsity MoE
 → Adaptive Routing
 → SeqTopK
-→ SoftMoE
+→ Expert-Choice Routing (reversed routing)
+→ SoftMoE (differentiable soft assignment)
 → Sub-MoE / Expert Merging
+→ REAM (Router-weighted Expert Activation Merging)
 → PEER (Million tiny experts)
 → Memory Layers / MoD
 ```
@@ -162,16 +168,15 @@ Dense FFN
 | DeepSeekMoE | Shared experts + fine-grained experts | main | DeepSeek-V2/V3/R1 | [arXiv:2401.06066](https://arxiv.org/abs/2401.06066) |
 | Aux-loss-free Load Balancing | Balances experts without strong aux loss | main | DeepSeek-V3 | [arXiv:2412.19437](https://arxiv.org/abs/2412.19437) |
 | High-Sparsity MoE | Huge total params, low active params | main | Qwen3 MoE / Qwen3-Next | [arXiv:2505.09388](https://arxiv.org/abs/2505.09388) |
-| Adaptive Expert Routing | Different tokens get different expert budgets | watchlist | Research | [arXiv:2410.10456](https://arxiv.org/abs/2410.10456) |
-| SeqTopK | Sequence-level expert budget allocation | watchlist | Research | [arXiv:2511.06494](https://arxiv.org/abs/2511.06494) |
-| SoftMoE | Differentiable expert routing | watchlist | Research | Latest papers |
-| Expert-Choice Routing | Experts choose tokens instead of tokens choosing experts | watchlist | Research | Expert Choice Routing papers |
-| Sub-MoE / Expert Merging | Merge experts to reduce MoE deployment cost | watchlist | Research | [arXiv:2506.23266](https://arxiv.org/abs/2506.23266) |
-| REAM | Expert merging / adaptive compression | watchlist | Research | [arXiv:2604.04356](https://arxiv.org/abs/2604.04356) |
-| RFID-MoE | Expert compression/deployment | watchlist | Research | TBD |
-| MoE++ | Cheap zero/copy/constant experts | watchlist | Research | [arXiv:2410.07348](https://arxiv.org/abs/2410.07348) |
-| PEER | Many tiny retrieved experts | watchlist | Research | [arXiv:2407.04153](https://arxiv.org/abs/2407.04153) |
-| Mixture-of-Depths | Route tokens through different compute depth | watchlist | Research | [arXiv:2404.02258](https://arxiv.org/abs/2404.02258) |
+| Adaptive Expert Routing | Different tokens get different expert budgets | emerging | Research | [arXiv:2410.10456](https://arxiv.org/abs/2410.10456) |
+| SeqTopK | Sequence-level expert budget allocation | emerging | Research | [arXiv:2511.06494](https://arxiv.org/abs/2511.06494) |
+| SoftMoE | Differentiable soft expert assignment (weighted token combos) | emerging | Research (ICLR 2024) | [arXiv:2308.00951](https://arxiv.org/abs/2308.00951) |
+| Expert-Choice Routing | Experts choose top-k tokens (reversed routing) | emerging | Research | [arXiv:2202.09368](https://arxiv.org/abs/2202.09368) |
+| Sub-MoE / Expert Merging | Merge experts to reduce MoE deployment cost | emerging | Research | [arXiv:2506.23266](https://arxiv.org/abs/2506.23266) |
+| REAM | Router-weighted Expert Activation Merging (preserves quality) | emerging | Research | [arXiv:2604.04356](https://arxiv.org/abs/2604.04356) |
+| MoE++ | Cheap zero/copy/constant experts | emerging | Research | [arXiv:2410.07348](https://arxiv.org/abs/2410.07348) |
+| PEER | Many tiny retrieved experts | emerging | Research | [arXiv:2407.04153](https://arxiv.org/abs/2407.04153) |
+| Mixture-of-Depths | Route tokens through different compute depth | emerging | Research | [arXiv:2404.02258](https://arxiv.org/abs/2404.02258) |
 
 ### Core Takeaway
 
@@ -199,14 +204,14 @@ Modern MoE focuses on routing, balancing, and reducing active compute.
 | RetNet | Retention: parallel training + recurrent inference | main | Microsoft research | [arXiv:2307.08621](https://arxiv.org/abs/2307.08621) |
 | Kimi Linear | KDA + MLA hybrid efficient attention | main | Moonshot | [arXiv:2510.26692](https://arxiv.org/abs/2510.26692) |
 | Titans | Neural long-term memory | main | Google research | [arXiv:2501.00663](https://arxiv.org/abs/2501.00663) |
-| Gated DeltaNet | Linear/recurrent attention | watchlist | Qwen3-Next / Kimi-style | Qwen/Kimi reports |
-| DeltaNet variants | Linear attention variants | watchlist | Research | Various |
-| ATLAS / DeepTransformers | Test-time memory / deep memory | watchlist | Research | [arXiv:2505.23735](https://arxiv.org/abs/2505.23735) |
-| ModRWKV | Multimodal RWKV | watchlist | Research | [arXiv:2505.14505](https://arxiv.org/abs/2505.14505) |
+| Gated DeltaNet | Linear/recurrent attention with data-controlled gating | main | Qwen3-Next / Kimi Linear | [arXiv:2412.06410](https://arxiv.org/abs/2412.06410) |
+| DeltaNet variants | Linear attention family (Mamba-2 SSD / Gated DeltaNet) | main | Research / Qwen3-Next | [arXiv:2405.21060](https://arxiv.org/abs/2405.21060) |
+| ATLAS / DeepTransformers | Test-time memory / deep memory | emerging | Research | [arXiv:2505.23735](https://arxiv.org/abs/2505.23735) |
+| ModRWKV | Multimodal RWKV for vision-language | emerging | Research | [arXiv:2505.14505](https://arxiv.org/abs/2505.14505) |
 | VMamba | Vision SSM (2D selective scan) | main | Vision research | [arXiv:2401.10166](https://arxiv.org/abs/2401.10166) |
 | Vision Mamba / Vim | Mamba adapted for visual patches | main | Vision research | [arXiv:2401.09417](https://arxiv.org/abs/2401.09417) |
 | MambaVision | Hybrid Mamba-Transformer vision backbone | main | Vision research | [arXiv:2407.08083](https://arxiv.org/abs/2407.08083) |
-| xLSTM | Modern recurrent LLM (LSTM scaled back) | watchlist | Research | [arXiv:2405.04517](https://arxiv.org/abs/2405.04517) |
+| xLSTM | Modern recurrent LLM (LSTM scaled back) | emerging | Research | [arXiv:2405.04517](https://arxiv.org/abs/2405.04517) |
 
 ### Core Takeaway
 
@@ -245,6 +250,8 @@ Titans adds trainable long-term memory.
 | Qwen2.5-Omni | Omni model | TMRoPE, Thinker-Talker | [arXiv:2503.20215](https://arxiv.org/abs/2503.20215) |
 | Qwen3-VL | Modern VLM | Interleaved-MRoPE, DeepStack, dense + MoE VLM | [arXiv:2511.21631](https://arxiv.org/abs/2511.21631) |
 | Gemma 3 multimodal | Open multimodal | Local/global attention | [arXiv:2503.19786](https://arxiv.org/abs/2503.19786) |
+| Llama 4 (multimodal) | Open multimodal | iRoPE, vision + text + speech | [Llama 4 blog](https://ai.meta.com/blog/llama-4-multimodal-intelligence/) |
+| DeepSeek-V3.2 multimodal | Sparse VLM | Token-level sparse attention (DSA) | [DeepSeek-V3.2-Exp repo](https://github.com/deepseek-ai/DeepSeek-V3.2-Exp) |
 | MiniCPM-V | Efficient VLM | Small-device / efficient VLM | OpenBMB |
 | GPT-4o / Gemini | Closed omni | Behavior and product direction only | Limited disclosure |
 
@@ -296,7 +303,7 @@ Pushing inference cost down?
     → Read Section 2 (Attention & Serving Kernels)
 
 Curious about what's next?
-    → Watchlist items (NoPE, P-RoPE, HoPE, xLSTM, Gated DeltaNet)
+    → Emerging items (NoPE, P-RoPE, HoPE, xLSTM, Gated DeltaNet, iRoPE, SoftMoE, DSA)
 ```
 
 ---

@@ -2,7 +2,7 @@
 examples/04_serving/kserve_manifest.yaml
 
 KServe InferenceService manifest for serving an LLM with vLLM backend.
-Maps to docs/10-aws-production/README.md "AWS Fine-Tuning Architecture".
+# Note: Originally mapped to docs/10-aws-production (moved to external production repo).
 
 Deploy:
     kubectl apply -f kserve_manifest.yaml

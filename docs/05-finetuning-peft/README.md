@@ -223,6 +223,6 @@ Projector-only tuning
 
 ## 📎 Related Resources
 
-- **Notebook section:** Master notebook `Section 8 / Section 9 / Section 17`
+- **Notebook section:** Master notebook `Section 5`
 - **Code example:** [examples/03_finetune/](../examples/03_finetune/) (LoRA + QLoRA scripts)
 - **Diagrams:** [assets/diagrams/training-pipeline.md](../../assets/diagrams/training-pipeline.md)

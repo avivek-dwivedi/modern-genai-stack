@@ -12,9 +12,11 @@ This hub covers **modern Generative AI engineering** end-to-end:
 |---|---|
 | LLM/VLM architecture (2023–2026+) | Pre-Transformer NLP (LSTM/GRU era, except for reference) |
 | Open-weight AND closed-source models | Vendor product comparisons / "best LLM" rankings |
-| Production patterns (RAG, agents, serving) | Toy demos / single-call examples |
-| AWS-native and self-hosted paths | Pure marketing material |
+| Attention / serving kernels (production-grade) | Toy demos / single-call examples |
+| Self-hosted and open-weight serving patterns | Pure marketing material |
 | Papers with clear engineering impact | Speculative / unverified claims |
+
+> Note: RAG, agent, AWS production, security and end-to-end blueprint sections (7-12) were moved to an external production repo. This hub now focuses on the **core research / engineering layers** (architecture → serving → finetuning → alignment).
 
 ---
 
@@ -30,19 +32,13 @@ This hub covers **modern Generative AI engineering** end-to-end:
    - Maturity tag: `main` / `watchlist`
 3. If it's a `main` entry, also add it to `end_to_end_*_master_notebook.ipynb` in the model map section.
 
-### Add a new RAG / agent / fine-tuning pattern
+### Add a new fine-tuning / alignment pattern
 
 1. Open an issue first with the pattern name + 2-3 sentence motivation
 2. Once approved:
    - Add the conceptual explanation to the relevant `docs/0X-*/README.md`
    - Add a runnable script in `examples/0X_*/`
    - If it's a major new pattern, add a section to the master notebook
-
-### Add an AWS reference architecture
-
-1. Add a Mermaid diagram to `assets/diagrams/aws-*.mmd`
-2. Add the markdown explainer to `docs/10-aws-production/README.md`
-3. If runnable, add an IaC snippet (CDK or Terraform) under `examples/05_bedrock/`
 
 ---
 
@@ -74,7 +70,9 @@ Anything in the **main roadmap** must satisfy at least ONE of:
 
 ```text
 1. Used in a released model
-2. Covered in a major technical report
+2. Covered in a major
+
+*(This section now uses `emerging` instead of `watchlist` to avoid the “still waiting” connotation.)* technical report
 3. Widely used in serving frameworks
 4. Architecturally central to 2025–2026 models
 ```

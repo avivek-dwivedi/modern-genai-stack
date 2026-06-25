@@ -110,7 +110,48 @@ Text tokens + image tokens + video tokens + audio tokens
 
 ---
 
-## 3.3 Multimodal Embeddings
+## 3.3 Multimodal Position Encoding (2025–2026 update)
+
+Modern VLMs extend RoPE into multimodal space. Each variant handles a different combination of text, image, video, and time.
+
+| Method | Handles | Used In | Source |
+|---|---|---|---|
+| MRoPE | Spatial-temporal (image + video) | Qwen2.5-VL | [arXiv:2502.13923](https://arxiv.org/abs/2502.13923) |
+| TMRoPE | Text-time RoPE (text + audio + video) | Qwen2.5-Omni | [arXiv:2503.20215](https://arxiv.org/abs/2503.20215) |
+| Interleaved-MRoPE | Interleaved text/image/video tokens | Qwen3-VL | [arXiv:2511.21631](https://arxiv.org/abs/2511.21631) |
+| DeepStack | Multi-level ViT feature fusion (VLM) | Qwen3-VL | [arXiv:2511.21631](https://arxiv.org/abs/2511.21631) |
+| iRoPE | Implicit RoPE for vision-language | Llama 4 | [Llama 4 blog](https://ai.meta.com/blog/llama-4-multimodal-intelligence/) |
+| HoPE (Hybrid VLM) | VLM / long-video | Research | [arXiv:2505.20444](https://arxiv.org/abs/2505.20444) |
+| MHRoPE / MRoPE-I | Multi-head frequency multimodal | Research | [arXiv:2510.23095](https://arxiv.org/abs/2510.23095) |
+| Local-Global Vision Attention | Image patches split into local + global | Gemma 3 | [arXiv:2503.19786](https://arxiv.org/abs/2503.19786) |
+| LazyAttention (deferred PE) | RAG over multimodal long docs | Research (ICML 2026) | [arXiv:2606.04302](https://arxiv.org/abs/2606.04302) |
+
+### Core Takeaway
+
+```text
+MRoPE / TMRoPE put position into image/video/audio time.
+Interleaved-MRoPE + DeepStack (Qwen3-VL) is the current open-weight SOTA pattern.
+iRoPE (Llama 4) is the leading closed-ish open-weight alternative.
+LazyAttention solves RAG-side position-agnostic KV reuse, not a PE per se.
+```
+
+---
+
+## 3.4 Multimodal Serving Attention (cross-ref Section 2)
+
+These are the attention / serving pieces that VLMs actually run on in production.
+
+| Method | Role | Source |
+|---|---|---|
+| DSA (DeepSeek Sparse Attention) | Token-level sparse multimodal attention | [DeepSeek-V3.2-Exp repo](https://github.com/deepseek-ai/DeepSeek-V3.2-Exp) |
+| FlashMLA + DSA | Multimodal MLA decoding + sparse FP8 KV | [FlashMLA GitHub](https://github.com/deepseek-ai/FlashMLA) |
+| MambaVision / Vision Mamba | Mamba-based vision backbones | [arXiv:2407.08083](https://arxiv.org/abs/2407.08083) / [arXiv:2401.09417](https://arxiv.org/abs/2401.09417) |
+| ModRWKV | Multimodal RWKV | [arXiv:2505.14505](https://arxiv.org/abs/2505.14505) |
+| Lightning Attention (M1) | Long-context hybrid attention for VLMs | [arXiv:2506.13585](https://arxiv.org/abs/2506.13585) |
+
+---
+
+## 3.5 Multimodal Embeddings
 
 | Type | Meaning | Examples |
 |---|---|---|
@@ -144,7 +185,7 @@ ColPali-style models are strong for document/page retrieval because they preserv
 
 ---
 
-## 3.4 Decision Tree — Which VLM Pattern?
+## 3.6 Decision Tree — Which VLM Pattern?
 
 ```text
 Image-text similarity / retrieval only?
@@ -160,18 +201,25 @@ Document understanding (PDFs, charts)?
     → ColPali-style multi-vector retrieval
 
 Real-time multimodal interaction (text + audio + video)?
-    → Unified / Interleaved (Qwen-VL / Qwen-Omni)
+    → Unified / Interleaved (Qwen-VL / Qwen-Omni / Llama 4)
+
+Long-context multimodal RAG over images/docs?
+    → Unified tokens + LazyAttention (deferred PE for KV reuse)
 ```
 
 ---
 
-## 3.5 Production Rule
+## 3.7 Production Rule
 
 ```text
 Most enterprise VLMs in 2025–2026 use Pattern 2 (projector + LLM) for chat
 or Pattern 5 (unified tokens) for advanced multimodal reasoning.
 
 For document QA, prefer ColPali-style multi-vector retrieval over text-only OCR pipelines.
+
+For multimodal serving at scale, use a backend that supports your VLM's RoPE variant
+(MRoPE / Interleaved-MRoPE / TMRoPE / iRoPE) and consider sparse attention (DSA) for
+token-heavy image+text prefills.
 ```
 
 ---

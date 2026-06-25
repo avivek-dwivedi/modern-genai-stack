@@ -33,15 +33,11 @@ Install the **Markdown Preview Mermaid Support** extension.
 | Diagram | Source | Used in |
 |---|---|---|
 | Transformer block | [transformer-block.mmd](transformer-block.mmd) | docs/01-architecture |
-| RAG pipeline | [rag-pipeline.mmd](rag-pipeline.mmd) | docs/07-ragops |
 | Serving stack | [serving-stack.mmd](serving-stack.mmd) | docs/02-attention-serving |
-| Agent architecture | [agent-architecture.mmd](agent-architecture.mmd) | docs/08-agentops |
-| AWS RAG | [aws-rag.mmd](aws-rag.mmd) | docs/10-aws-production |
-| Guardrail layers | [guardrail-layers.mmd](guardrail-layers.mmd) | docs/11-security-guardrails |
 | RLHF pipeline | [rlhf-pipeline.mmd](rlhf-pipeline.mmd) | docs/06-alignment-rlhf |
-| Training pipeline | [training-pipeline.mmd](training-pipeline.mmd) | docs/10-aws-production |
 | Model landscape | [model-landscape.mmd](model-landscape.mmd) | docs/01-architecture |
-| Full stack | [full-stack.mmd](full-stack.mmd) | docs/12-e2e-blueprint |
+
+> Note: RAG / Agent / AWS / Security / E2E diagrams (sections 7-12) were moved to an external production repo. The .mmd source files for those sections remain in this folder for now but are not referenced from the active docs.
 
 ---
 

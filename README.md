@@ -4,7 +4,7 @@
 
 **The end-to-end engineering reference for production Generative AI systems.**
 
-From LLM architecture internals to RAG, agents, fine-tuning, RLHF, AWS, and security — in one place.
+From LLM architecture internals to attention/serving kernels, multimodal models, fine-tuning, and alignmente-tuning, and alignment — in one place.
 
 [📓 Master Notebook](end_to_end_llm_vlm_rag_agentops_master_notebook.ipynb) · [📚 Docs](docs/) · [💻 Examples](examples/) · [📑 Papers](references/papers.md)
 
@@ -53,12 +53,12 @@ python rag_basic.py
 | **04** | [Coding Models](docs/04-coding-models/README.md) | Code Llama, DeepSeek Coder, Qwen Coder, Kimi K2 |
 | **05** | [Fine-Tuning & PEFT](docs/05-finetuning-peft/README.md) | LoRA, QLoRA, DoRA, capacity planning |
 | **06** | [Alignment & RLHF](docs/06-alignment-rlhf/README.md) | PPO → DPO → ORPO → GRPO |
-| **07** | [RAGOps](docs/07-ragops/README.md) | Hybrid search, rerankers, multimodal RAG |
-| **08** | [AgentOps](docs/08-agentops/README.md) | ReAct, LangGraph, memory, tools |
-| **09** | [LLMOps & EvalOps](docs/09-llmops-evalops/README.md) | Prompt registry, evaluation, observability |
-| **10** | [AWS Production](docs/10-aws-production/README.md) | Bedrock, EKS+KServe, vLLM, SageMaker |
-| **11** | [Security & Guardrails](docs/11-security-guardrails/README.md) | Injection, poisoning, defense in depth |
-| **12** | [E2E Blueprint](docs/12-e2e-blueprint/README.md) | The complete production system map |
+| **07** | [RAGOps](docs/07-ragops/README.md) | *Moved to external repo — see [Examples README](examples/README.md)* |
+| **08** | [AgentOps](docs/08-agentops/README.md) | *Moved to external repo — see [Examples README](examples/README.md)* |
+| **09** | [LLMOps & EvalOps](docs/09-llmops-evalops/README.md) | *Moved to external repo — see [Examples README](examples/README.md)* |
+| **10** | [AWS Production](docs/10-aws-production/README.md) | *Moved to external repo — see [Examples README](examples/README.md)* |
+| **11** | [Security & Guardrails](docs/11-security-guardrails/README.md) | *Moved to external repo — see [Examples README](examples/README.md)* |
+| **12** | [E2E Blueprint](docs/12-e2e-blueprint/README.md) | *Moved to external repo — see [Examples README](examples/README.md)* |
 
 ---
 
@@ -68,12 +68,10 @@ Runnable code for every major section.
 
 | | | |
 |---|---|---|
-| 🟦 [examples/01_rag/](examples/01_rag/) | Hybrid RAG + reranker + faithfulness check | [`rag_basic.py`](examples/01_rag/rag_basic.py) |
-| 🤖 [examples/02_agent/](examples/02_agent/) | Multi-agent supervisor with LangGraph | [`langgraph_supervisor.py`](examples/02_agent/langgraph_supervisor.py) |
 | 🎯 [examples/03_finetune/](examples/03_finetune/) | LoRA + QLoRA + DPO training | [`lora_sft.py`](examples/03_finetune/lora_sft.py) · [`dpo_example.py`](examples/03_finetune/dpo_example.py) |
-| ⚡ [examples/04_serving/](examples/04_serving/) | vLLM config + KServe manifest | [`vllm_config.py`](examples/04_serving/vllm_config.py) · [`kserve_manifest.yaml`](examples/04_serving/kserve_manifest.yaml) |
-| ☁️ [examples/05_bedrock/](examples/05_bedrock/) | AWS Bedrock + Knowledge Base RAG | [`bedrock_basic.py`](examples/05_bedrock/bedrock_basic.py) |
-| 📊 [examples/06_eval/](examples/06_eval/) | LLM-as-judge eval harness | [`llm_as_judge.py`](examples/06_eval/llm_as_judge.py) |
+| ⚡ [examples/04_serving/](examples/04_serving/) | vLLM config (AWS KServe examples moved to external repo) | [`vllm_config.py`](examples/04_serving/vllm_config.py) |
+
+> Note: RAG / Agent / AWS / Eval examples (sections 7-12) were moved to an external production repo. This hub now focuses on the **core research / engineering layers** (architecture → serving → finetuning → alignment).
 
 ---
 
@@ -81,12 +79,10 @@ Runnable code for every major section.
 
 ```text
 Architecture tells which model to choose.
-Fine-tuning tells how to adapt it.
-RAG connects private/external knowledge.
-Agents connect tools, workflows, and memory.
-Serving runs the system at scale.
-LLMOps evaluates, monitors, and rolls back.
-Security prevents leakage, poisoning, and abuse.
+Attention/serving tells how cheaply it runs.
+Multimodal extends it to vision and audio.
+Fine-tuning adapts it to your task.
+Alignment shapes its behavior with PPO / DPO / GRPO.
 ```
 
 ---
@@ -100,7 +96,7 @@ Security prevents leakage, poisoning, and abuse.
 | Serving methods | FlashAttention 1–3, SageAttention 1–3, PagedAttention, vAttention, RadixAttention |
 | Fine-tuning | Full FT, LoRA, QLoRA, DoRA, AdaLoRA, IA3 |
 | Alignment | PPO, DPO, ORPO, SimPO, KTO, GRPO, RLAIF |
-| AWS services | Bedrock, Bedrock Agents, AgentCore, SageMaker, EKS+KServe, ECS, OpenSearch, Ray |
+| AWS services | *Moved to external repo* |
 | Diagrams | 10 Mermaid architecture diagrams |
 | Paper references | 90+ with canonical URLs |
 
@@ -110,11 +106,10 @@ Security prevents leakage, poisoning, and abuse.
 
 | Audience | Where to start |
 |---|---|
-| 🧑‍💻 **AI Engineer starting out** | Read the notebook top-to-bottom |
-| 👩‍🔬 **ML Engineer moving to LLMs** | Sections 1, 5, 6, 7, 9 |
-| 🧱 **Backend Engineer building AI products** | Sections 7, 8, 9, 10, 11, 12 |
-| 🏗️ **Solutions Architect** | Sections 9, 10, 11, 12 + `examples/05_bedrock/` |
-| 📊 **Tech Lead / EM** | Section 12 (E2E blueprint) + decision trees throughout |
+| 🧑‍💻 **AI Engineer starting out** | Read the notebook top-to-bottom (sections 1–6) |
+| 👩‍🔬 **ML Engineer moving to LLMs** | Sections 1, 5, 6 |
+| 🧱 **Backend Engineer serving models** | Section 2 (attention/serving) + examples/04_serving |
+| 🏗️ **Solutions Architect picking models** | Section 1 (architecture) + Section 3 (VLM/multimodal) |
 
 ---
 
@@ -127,7 +122,7 @@ Apache 2.0 — see [LICENSE](LICENSE).
 ## 🤝 Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). New model reports, architecture methods, and production patterns are welcome — please follow the watchlist vs. main classification.
-
+attention/serving patterns are welcome — please follow the emerging
 ---
 
 <div align="center">

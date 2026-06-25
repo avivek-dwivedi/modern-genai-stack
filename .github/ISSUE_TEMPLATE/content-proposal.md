@@ -10,8 +10,7 @@ labels: ["content", "enhancement"]
 - [ ] New model in the model map
 - [ ] New architecture method (PE, attention, MoE, beyond-transformer)
 - [ ] New serving/inference method
-- [ ] New RAG / agent / fine-tuning pattern
-- [ ] New AWS reference architecture
+- [ ] New fine-tuning / alignment pattern
 - [ ] New paper/resource to add to references/papers.md
 - [ ] Other (please describe)
 
@@ -25,12 +24,8 @@ Which section of the docs/notebook should this live in?
 - Section 4 — Coding Models
 - Section 5 — Fine-Tuning & PEFT
 - Section 6 — Alignment & RLHF
-- Section 7 — RAGOps
-- Section 8 — AgentOps
-- Section 9 — LLMOps & EvalOps
-- Section 10 — AWS Production
-- Section 11 — Security & Guardrails
-- Section 12 — End-to-End Blueprint
+
+> Note: Sections 7-12 (RAG, agents, AWS, security, E2E blueprint) were moved to an external production repo.
 
 ## Maturity
 
